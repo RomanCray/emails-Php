@@ -3,10 +3,6 @@
 require 'vendor/autoload.php';
 header('Access-Control-Allow-Origin: *');
 
-switch ($_GET["NameFunction"]) {
-
-    case 'SelectExcel':
-
         $inputFileName = './empresas.xlsx';
 
         /**  Identify the type of $inputFileName  **/
@@ -14,7 +10,7 @@ switch ($_GET["NameFunction"]) {
         /**  Create a new Reader of the type that has been identified  **/
         $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
         /** Para leer una hoja especifica del Archivo */
-        $reader->setLoadSheetsOnly(["Sheet 1", "Hoja1"]);
+        $reader->setLoadSheetsOnly(["Sheet 1", "Hoja2"]);
         /**  Load $inputFileName to a Spreadsheet Object  **/
         $spreadsheet = $reader->load($inputFileName);
 
@@ -52,20 +48,3 @@ switch ($_GET["NameFunction"]) {
         }
 
         echo json_encode($JsonGet);
-        break;
-    case 'letras':
-        echo 'Mayusculas<br>';
-        for ($i = 65; $i <= 90; $i++) {
-            $letra = chr($i);
-            echo $letra . ' &nbsp';
-        }
-
-        echo '<br>Minusculas<br>';
-
-        for ($i = 97; $i <= 122; $i++) {
-            $letra = chr($i);
-            echo $letra . ' &nbsp';
-        }
-
-        break;
-}
